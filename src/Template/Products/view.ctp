@@ -11,10 +11,8 @@
             <p><?= $product->has('product_type') ? $this->Html->link($product->product_type->name, ['controller' => 'ProductTypes', 'action' => 'view', $product->product_type->id]) : '' ?></p>
         </div>
         <div class="large-2 columns numbers end">
-            <h6 class="subheader"><?= __('Id') ?></h6>
-            <p><?= $this->Number->format($product->id) ?></p>
             <h6 class="subheader"><?= __('Value') ?></h6>
-            <p><?= $this->Number->format($product->value) ?></p>
+            <p><?= $this->Number->currency($product->value, 'BRL') ?></p>
         </div>
         <div class="large-2 columns dates end">
             <h6 class="subheader"><?= __('Created') ?></h6>

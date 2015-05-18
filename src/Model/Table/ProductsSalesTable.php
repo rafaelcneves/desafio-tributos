@@ -1,16 +1,16 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Product;
+use App\Model\Entity\ProductsSale;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Products Model
+ * ProductsSales Model
  */
-class ProductsTable extends Table
+class ProductsSalesTable extends Table
 {
 
     /**
@@ -21,21 +21,16 @@ class ProductsTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('products');
-        $this->displayField('name');
+        $this->table('products_sales');
+        $this->displayField('id');
         $this->primaryKey('id');
-        $this->addBehavior('Timestamp');
-        $this->belongsTo('ProductTypes', [
-            'foreignKey' => 'product_type_id',
+        $this->belongsTo('Products', [
+            'foreignKey' => 'product_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsToMany('Sales', [
-            'foreignKey' => 'product_id',
-            'targetForeignKey' => 'sale_id',
-            'joinTable' => 'products_sales'
-        ]);
-        $this->hasMany('ProductsSales', [
-            'foreignKey' => 'product_id'
+        $this->belongsTo('Sales', [
+            'foreignKey' => 'sale_id',
+            'joinType' => 'INNER'
         ]);
     }
 
@@ -50,15 +45,11 @@ class ProductsTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create');
-
+            
         $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
-
-        $validator
-            ->add('value', 'valid', ['rule' => 'decimal'])
-            ->requirePresence('value', 'create')
-            ->notEmpty('value');
+            ->add('amount', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('amount', 'create')
+            ->notEmpty('amount');
 
         return $validator;
     }
@@ -72,7 +63,8 @@ class ProductsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['product_type_id'], 'ProductTypes'));
+        $rules->add($rules->existsIn(['product_id'], 'Products'));
+        $rules->add($rules->existsIn(['sale_id'], 'Sales'));
         return $rules;
     }
 }

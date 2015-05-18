@@ -9,10 +9,8 @@
             <p><?= h($productType->name) ?></p>
         </div>
         <div class="large-2 columns numbers end">
-            <h6 class="subheader"><?= __('Id') ?></h6>
-            <p><?= $this->Number->format($productType->id) ?></p>
             <h6 class="subheader"><?= __('Percentage') ?></h6>
-            <p><?= $this->Number->format($productType->percentage) ?></p>
+            <p><?= $this->Number->toPercentage($productType->percentage) ?></p>
         </div>
         <div class="large-2 columns dates end">
             <h6 class="subheader"><?= __('Created') ?></h6>
@@ -30,7 +28,6 @@
     <?php if (!empty($productType->products)): ?>
     <table cellpadding="0" cellspacing="0">
         <tr>
-            <th><?= __('Id') ?></th>
             <th><?= __('Name') ?></th>
             <th><?= __('Value') ?></th>
             <th><?= __('Product Type Id') ?></th>
@@ -40,7 +37,6 @@
         </tr>
         <?php foreach ($productType->products as $products): ?>
         <tr>
-            <td><?= h($products->id) ?></td>
             <td><?= h($products->name) ?></td>
             <td><?= h($products->value) ?></td>
             <td><?= h($products->product_type_id) ?></td>

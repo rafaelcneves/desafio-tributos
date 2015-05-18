@@ -11,12 +11,12 @@
             echo $this->Form->input('product_type_id', ['options' => $productTypes]);
         ?>
     </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
     <?= $this->Form->postLink(
             __('Delete'),
             ['action' => 'delete', $product->id],
             ['confirm' => __('Are you sure you want to delete # {0}?', $product->id)]
         )
     ?>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
 </div>

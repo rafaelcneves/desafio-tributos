@@ -34,8 +34,8 @@ class SalesFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'created' => 1431721483,
-            'modified' => 1431721483
+            'created' => 1431963008,
+            'modified' => 1431963008
         ],
     ];
 }

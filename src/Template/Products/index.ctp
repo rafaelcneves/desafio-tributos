@@ -5,7 +5,6 @@
     <table cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
             <th><?= $this->Paginator->sort('value') ?></th>
             <th><?= $this->Paginator->sort('product_type_id') ?></th>
@@ -17,9 +16,8 @@
     <tbody>
     <?php foreach ($products as $product): ?>
         <tr>
-            <td><?= $this->Number->format($product->id) ?></td>
             <td><?= h($product->name) ?></td>
-            <td><?= $this->Number->format($product->value) ?></td>
+            <td><?= $this->Number->currency($product->value, "BRL") ?></td>
             <td>
                 <?= $product->has('product_type') ? $this->Html->link($product->product_type->name, ['controller' => 'ProductTypes', 'action' => 'view', $product->product_type->id]) : '' ?>
             </td>
@@ -43,4 +41,5 @@
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
+    <?= $this->Html->link(__('New'), ['action' => 'add']) ?>
 </div>

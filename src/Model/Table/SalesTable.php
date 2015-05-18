@@ -30,6 +30,9 @@ class SalesTable extends Table
             'targetForeignKey' => 'product_id',
             'joinTable' => 'products_sales'
         ]);
+        $this->hasMany('ProductsSales', [
+            'foreignKey' => 'sale_id'
+        ]);
     }
 
     /**

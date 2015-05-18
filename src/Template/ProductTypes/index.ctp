@@ -5,7 +5,6 @@
     <table cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
             <th><?= $this->Paginator->sort('percentage') ?></th>
             <th><?= $this->Paginator->sort('created') ?></th>
@@ -16,9 +15,8 @@
     <tbody>
     <?php foreach ($productTypes as $productType): ?>
         <tr>
-            <td><?= $this->Number->format($productType->id) ?></td>
             <td><?= h($productType->name) ?></td>
-            <td><?= $this->Number->format($productType->percentage) ?></td>
+            <td><?= $this->Number->toPercentage($productType->percentage) ?></td>
             <td><?= h($productType->created) ?></td>
             <td><?= h($productType->modified) ?></td>
             <td class="actions">
@@ -39,4 +37,5 @@
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
+    <span><?= $this->Html->link(__('New'), ['action' => 'add']) ?></span>
 </div>

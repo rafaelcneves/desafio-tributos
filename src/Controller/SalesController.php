@@ -32,7 +32,7 @@ class SalesController extends AppController
     public function view($id = null)
     {
         $sale = $this->Sales->get($id, [
-            'contain' => ['Products']
+            'contain' => ['Products' => ['ProductTypes']]
         ]);
         $this->set('sale', $sale);
         $this->set('_serialize', ['sale']);

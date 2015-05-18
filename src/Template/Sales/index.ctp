@@ -5,7 +5,6 @@
     <table cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('created') ?></th>
             <th><?= $this->Paginator->sort('modified') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
@@ -14,7 +13,6 @@
     <tbody>
     <?php foreach ($sales as $sale): ?>
         <tr>
-            <td><?= $this->Number->format($sale->id) ?></td>
             <td><?= h($sale->created) ?></td>
             <td><?= h($sale->modified) ?></td>
             <td class="actions">
@@ -35,4 +33,5 @@
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
+    <?= $this->Html->link(__('New'), ['action' => 'add']) ?>
 </div>

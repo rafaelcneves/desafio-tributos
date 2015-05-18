@@ -2,12 +2,12 @@
     <?= $this->render('../Layout/sidebar', false) ?>
 </div>
 <div class="sales view large-10 medium-9 columns">
-    <h2><?= h($sale->id) ?></h2>
+    <h2><?= h($sale->created) ?></h2>
     <div class="row">
-        <div class="large-2 columns numbers end">
+        <!-- <div class="large-2 columns numbers end">
             <h6 class="subheader"><?= __('Id') ?></h6>
             <p><?= $this->Number->format($sale->id) ?></p>
-        </div>
+        </div> -->
         <div class="large-2 columns dates end">
             <h6 class="subheader"><?= __('Created') ?></h6>
             <p><?= h($sale->created) ?></p>
@@ -24,7 +24,6 @@
     <?php if (!empty($sale->products)): ?>
     <table cellpadding="0" cellspacing="0">
         <tr>
-            <th><?= __('Id') ?></th>
             <th><?= __('Name') ?></th>
             <th><?= __('Value') ?></th>
             <th><?= __('Product Type Id') ?></th>
@@ -34,20 +33,14 @@
         </tr>
         <?php foreach ($sale->products as $products): ?>
         <tr>
-            <td><?= h($products->id) ?></td>
             <td><?= h($products->name) ?></td>
-            <td><?= h($products->value) ?></td>
-            <td><?= h($products->product_type_id) ?></td>
+            <td><?= $this->Number->currency($products->value, "BRL") ?></td>
+            <td><?= $products->has('product_type') ? $this->Html->link($products->product_type->name, ['controller' => 'ProductTypes', 'action' => 'view', $products->product_type->id]) : '' ?></td>
             <td><?= h($products->created) ?></td>
             <td><?= h($products->modified) ?></td>
 
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['controller' => 'Products', 'action' => 'view', $products->id]) ?>
-
-                <?= $this->Html->link(__('Edit'), ['controller' => 'Products', 'action' => 'edit', $products->id]) ?>
-
-                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Products', 'action' => 'delete', $products->id], ['confirm' => __('Are you sure you want to delete # {0}?', $products->id)]) ?>
-
             </td>
         </tr>
 

@@ -41,8 +41,8 @@ class ProductsFixture extends TestFixture
             'name' => 'Lorem ipsum dolor sit amet',
             'value' => '',
             'product_type_id' => 1,
-            'created' => 1431721476,
-            'modified' => 1431721476
+            'created' => 1431962996,
+            'modified' => 1431962996
         ],
     ];
 }

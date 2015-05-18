@@ -22,8 +22,8 @@ CREATE TABLE sales (
 );
 
 CREATE TABLE products_sales (
+    id SERIAL PRIMARY KEY,
     product_id INT NOT NULL REFERENCES products,
     sale_id INT NOT NULL REFERENCES sales,
-    amount INT NOT NULL DEFAULT 1,
-    PRIMARY KEY (product_id, sale_id)
+    amount INT NOT NULL DEFAULT 1
 );
